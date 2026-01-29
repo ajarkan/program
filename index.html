@@ -1,0 +1,1209 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Madrasah Ilmi - Belajar Islam Online & Offline</title>
+    
+    <!-- META TAGS -->
+    <meta property="og:title" content="Madrasah Ilmi - Belajar Islam Online & Offline">
+    <meta property="og:description" content="Kelas Belajar Islam adalah kelas islami yang komprehensif, bersanad, dan fleksibel untuk semua kalangan. Daftar sekarang!">
+    <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AP1GczPA9jXgztdoCCCKqYeoymeBj8Iu6edy4bCVqWV1bG00BlmrfgPfKi0WcAiLwTfbwiFZT4wzN-Tf6Gwn4pRVsruyyez4zzmV1Cgxe4232rKbxcch1W0mtL_JjFwW38Vfg66YuUdKRz-xuC0XnhCzXBRP=w512-h512-s-no-gm?authuser=0">
+    <meta property="og:type" content="website">
+
+    <!-- FAVICON -->
+    <link rel="icon" type="image/png" href="https://lh3.googleusercontent.com/pw/AP1GczPA9jXgztdoCCCKqYeoymeBj8Iu6edy4bCVqWV1bG00BlmrfgPfKi0WcAiLwTfbwiFZT4wzN-Tf6Gwn4pRVsruyyez4zzmV1Cgxe4232rKbxcch1W0mtL_JjFwW38Vfg66YuUdKRz-xuC0XnhCzXBRP=w512-h512-s-no-gm?authuser=0">
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Merriweather', 'serif'],
+                    },
+                    colors: {
+                        emerald: {
+                            850: '#064e3b',
+                            900: '#022c22',
+                        },
+                        gold: {
+                            400: '#fbbf24',
+                            500: '#f59e0b',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Custom Styles & Utilities */
+        .fade-in { animation: fadeIn 0.3s ease-in-out; }
+        .slide-up { animation: slideUp 0.4s ease-out; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .modal-open { overflow: hidden; }
+        
+        /* Video Play Button Pulse */
+        .play-btn { animation: pulse-gold 2s infinite; }
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(245, 158, 11, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(245, 158, 11, 0); }
+        }
+
+        /* Custom Scrollbar */
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #10b981; border-radius: 4px; }
+
+        /* Accordion Arrow */
+        .accordion-arrow { transition: transform 0.3s ease; }
+        .accordion-open .accordion-arrow { transform: rotate(180deg); }
+
+        /* Hide Scrollbar for Partner Logo Slider but allow scroll */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+		/* KHUSUS LOGO PARTNER: SEIMBANG (TIDAK KEKECILAN, TIDAK KEBESARAN) */
+        #landing-wrapper .partner-logo {
+            height: 42px !important; /* Mobile: 42px (Pas untuk 2-2.5 logo per layar) */
+            width: auto !important;
+            max-width: 160px !important; /* Batas lebar agar logo panjang aman */
+            object-fit: contain !important;
+		
+        /* Gallery / Carousel Hide Scrollbar */
+        .scrollbar-hide::-webkit-scrollbar { display: none; }
+        .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* FAQ Transition */
+        .faq-content {
+            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+        }
+        .faq-item.active .faq-content {
+            max-height: 500px;
+            opacity: 1;
+        }
+        .faq-icon { transition: transform 0.3s ease; }
+        .faq-item.active .faq-icon { transform: rotate(45deg); }
+    </style>
+</head>
+<body class="text-gray-700 bg-gray-50 font-sans antialiased">
+
+    <!-- NAVIGATION -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md shadow-sm border-b border-gray-100 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo -->
+                <div class="flex-shrink-0 flex items-center cursor-pointer" onclick="showLandingPage()">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOeglhqO63pFW3bNE5nGqhg0s24gs7n65dJ7Jap4F4TTGRJi1lLGj753ErVMW1oS7SIPAbIzkAM9KT3EXbdlksCVGGLOrtGl8YeSsmQ-NsoHQ2YZiSWMxu_61IB_icBor97xDEieIgN0Iq3z-S8IXMi=w435-h100-s-no-gm?authuser=0" alt="Logo Madrasah Ilmi" class="h-12 w-auto object-contain">
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#home" onclick="showLandingPage()" class="text-gray-600 hover:text-emerald-600 font-medium transition">Beranda</a>
+                    <a href="#classes" onclick="showLandingPage()" class="text-gray-600 hover:text-emerald-600 font-medium transition">Program Kelas</a>
+                    <a href="#gallery" onclick="showLandingPage()" class="text-gray-600 hover:text-emerald-600 font-medium transition">Galeri</a>
+                    <a href="#testimonials" onclick="showLandingPage()" class="text-gray-600 hover:text-emerald-600 font-medium transition">Testimoni</a>
+                    <!-- Tombol Cek Jadwal (Link Biasa) -->
+                    <a href="https://ajarkan.github.io/jadwal/" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-medium transition shadow-lg shadow-emerald-600/20 transform hover:-translate-y-0.5">
+                        Cek Jadwal
+                    </a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-gray-600 hover:text-emerald-600 focus:outline-none" onclick="toggleMobileMenu()">
+                        <i class="fas fa-bars text-2xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu Panel -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-100 absolute w-full shadow-lg">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="#home" onclick="toggleMobileMenu(); showLandingPage()" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-md">Beranda</a>
+                <a href="#classes" onclick="toggleMobileMenu(); showLandingPage()" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-md">Program Kelas</a>
+                <a href="#gallery" onclick="toggleMobileMenu(); showLandingPage()" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-md">Galeri</a>
+                <a href="#testimonials" onclick="toggleMobileMenu(); showLandingPage()" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-md">Testimoni</a>
+                <!-- Tombol Cek Jadwal Mobile (Link Biasa) -->
+                <a href="https://ajarkan.github.io/jadwal/" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" class="block w-full text-center mt-4 bg-emerald-600 text-white px-4 py-3 rounded-lg font-bold">Cek Jadwal</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main id="main-content" class="pt-20">
+        
+        <!-- SECTION: HERO -->
+        <section id="home" class="relative bg-white overflow-hidden">
+            <div class="absolute inset-y-0 right-0 w-1/2 bg-emerald-50 rounded-l-[50px] hidden lg:block"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative pt-12 pb-20 lg:pt-24 lg:pb-32">
+                <div class="grid lg:grid-cols-2 gap-12 items-center">
+                    <div class="text-center lg:text-left slide-up">
+                        <span class="inline-block py-1 px-3 rounded-full bg-emerald-100 text-emerald-800 text-sm font-semibold mb-6">
+                            <i class="fas fa-star text-gold-500 mr-1"></i> Telah diikuti 1,000+ Santri
+                        </span>
+                        <h1 class="text-4xl lg:text-5xl font-serif font-bold text-emerald-900 leading-tight mb-6">
+                            Bangun Generasi Qur'ani, <br>
+                            <span class="text-emerald-600">Mulai Dari Sini.</span>
+                        </h1>
+                        <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                            Platform belajar Islam terstruktur dengan kurikulum bersanad. Tersedia kelas online dan offline untuk semua usia dan tingkatan.
+                        </p>
+                        <div class="flex flex-col sm:flex-row justify-center lg:justify-start gap-4">
+                            <button onclick="scrollToSection('classes')" class="bg-emerald-600 text-white px-8 py-4 rounded-xl font-bold shadow-lg shadow-emerald-600/30 hover:bg-emerald-700 transition transform hover:-translate-y-1">
+                                Lihat Pilihan Kelas
+                            </button>
+                            <button onclick="openVideoModal()" class="flex items-center justify-center space-x-3 px-8 py-4 rounded-xl border-2 border-gray-200 hover:border-emerald-600 hover:text-emerald-600 transition font-medium text-gray-700 group">
+                                <i class="fas fa-play-circle text-2xl group-hover:text-emerald-600 text-gray-400 transition"></i>
+                                <span>Tonton Profil</span>
+                            </button>
+                        </div>
+                        
+                        <div class="mt-10 pt-8 border-t border-gray-100 flex items-center justify-center lg:justify-start gap-6 text-gray-400 grayscale opacity-70">
+                            <i class="fab fa-youtube text-3xl hover:grayscale-0 hover:text-red-600 transition"></i>
+                            <i class="fab fa-instagram text-3xl hover:grayscale-0 hover:text-pink-600 transition"></i>
+                            <i class="fas fa-university text-3xl hover:grayscale-0 hover:text-blue-600 transition"></i>
+                            <span class="text-sm font-medium ml-2">Didukung oleh Mitra Terpercaya</span>
+                        </div>
+                    </div>
+
+                    <!-- Image / Video Placeholder -->
+                    <div class="relative lg:h-[500px] w-full rounded-3xl overflow-hidden shadow-2xl group cursor-pointer" onclick="openVideoModal()">
+                        <img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae?q=80&w=2070&auto=format&fit=crop" alt="Suasana Belajar" class="w-full h-full object-cover transition duration-700 group-hover:scale-110">
+                        <div class="absolute inset-0 bg-black/30 group-hover:bg-black/40 transition flex items-center justify-center">
+                            <div class="bg-white/20 backdrop-blur-sm p-4 rounded-full play-btn">
+                                <div class="bg-white text-emerald-600 w-16 h-16 rounded-full flex items-center justify-center pl-1 shadow-lg">
+                                    <i class="fas fa-play text-2xl"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: MANFAAT -->
+        <section id="benefits" class="py-20 bg-emerald-900 text-white relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-64 h-64 bg-emerald-800 rounded-full mix-blend-multiply filter blur-3xl opacity-50 -translate-x-1/2 -translate-y-1/2"></div>
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold mb-4">Kenapa Belajar Bersama Kami?</h2>
+                    <p class="text-emerald-200 max-w-2xl mx-auto">Kami merancang kurikulum yang memudahkan pemula hingga tingkat lanjut dengan bimbingan personal.</p>
+                </div>
+
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="bg-emerald-800/50 p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
+                        <div class="w-14 h-14 bg-gold-500 rounded-lg flex items-center justify-center mb-6 text-emerald-900 text-2xl">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Bersanad & Tersertifikasi</h3>
+                        <p class="text-emerald-200 leading-relaxed">Pengajar hafiz/hafizah bersanad yang memiliki kompetensi tinggi dalam bidangnya.</p>
+                    </div>
+                    <div class="bg-emerald-800/50 p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
+                        <div class="w-14 h-14 bg-gold-500 rounded-lg flex items-center justify-center mb-6 text-emerald-900 text-2xl">
+                            <i class="fas fa-clock"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Waktu Fleksibel</h3>
+                        <p class="text-emerald-200 leading-relaxed">Pilih jadwal belajar Online (Zoom) atau Offline sesuai dengan kesibukan Anda.</p>
+                    </div>
+                    <div class="bg-emerald-800/50 p-8 rounded-2xl border border-emerald-700 hover:bg-emerald-800 transition">
+                        <div class="w-14 h-14 bg-gold-500 rounded-lg flex items-center justify-center mb-6 text-emerald-900 text-2xl">
+                            <i class="fas fa-book-open"></i>
+                        </div>
+                        <h3 class="text-xl font-bold mb-3">Kurikulum Terstruktur</h3>
+                        <p class="text-emerald-200 leading-relaxed">Materi disusun sistematis dari level dasar hingga mahir, mudah dipahami.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: PROGRAM KELAS -->
+        <section id="classes" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <span class="text-emerald-600 font-bold tracking-wide uppercase text-sm">Program Kami</span>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900 mt-2">Pilihan Kelas Terbaik</h2>
+                </div>
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="class-grid">
+                    <!-- Cards are populated via JS or Static HTML below -->
+                    <!-- Card 1 -->
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden group border border-gray-100 flex flex-col h-full">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1584286595398-a59f21d313f5?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Kelas Baca Quran">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-emerald-600 shadow-sm">Online / Offline</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-emerald-900 mb-2">Kelas Baca Al-Quran</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-3">Belajar membaca Al-Quran dari nol (Iqro) hingga lancar dengan makhroj yang benar.</p>
+                            <div class="mt-auto pt-4 border-t border-gray-50">
+                                <button onclick="openClassDetail('quran')" class="w-full py-2.5 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-50 transition">Detail Kelas</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 2 -->
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden group border border-gray-100 flex flex-col h-full">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1555679427-1f6dfcce943b?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Kelas Bahasa Arab">
+                            <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-emerald-600 shadow-sm">Online / Offline</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-emerald-900 mb-2">Kelas Bahasa Arab</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-3">Kuasai Nahwu, Shorof, dan percakapan harian Bahasa Arab dengan metode praktis.</p>
+                            <div class="mt-auto pt-4 border-t border-gray-50">
+                                <button onclick="openClassDetail('arab')" class="w-full py-2.5 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-50 transition">Detail Kelas</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Card 3 -->
+                    <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden group border border-gray-100 flex flex-col h-full">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1596541539243-559d1c0800b7?q=80&w=1000&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" alt="Kelas Fiqih">
+                             <div class="absolute top-4 right-4 bg-white/90 backdrop-blur px-3 py-1 rounded-full text-xs font-bold text-emerald-600 shadow-sm">Online</div>
+                        </div>
+                        <div class="p-6 flex-1 flex flex-col">
+                            <h3 class="text-xl font-bold text-emerald-900 mb-2">Kelas Fiqih Ibadah</h3>
+                            <p class="text-gray-500 text-sm mb-4 line-clamp-3">Memahami tata cara ibadah yang benar sesuai sunnah (Shalat, Thaharah, Puasa, Zakat).</p>
+                            <div class="mt-auto pt-4 border-t border-gray-50">
+                                <button onclick="openClassDetail('fiqih')" class="w-full py-2.5 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-50 transition">Detail Kelas</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: GALLERY CAROUSEL (MERGED FROM REACT COMPONENT) -->
+        <section id="gallery" class="py-20 bg-white select-none relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
+                <!-- Header -->
+                <div class="text-center">
+                    <span class="text-emerald-600 font-bold tracking-wide uppercase text-sm">Dokumentasi</span>
+                    <h2 class="text-3xl lg:text-4xl font-serif font-light text-gray-900 mt-2 tracking-tight">Galeri & Fasilitas</h2>
+                    <p class="text-gray-500 mt-2">Suasana belajar dan fasilitas penunjang di Madrasah Ilmi. Klik gambar untuk detail.</p>
+                </div>
+
+                <div class="relative group">
+                    <!-- Navigasi Carousel -->
+                    <button id="gallery-prev" class="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-3 md:-translate-x-6 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-emerald-900 text-white shadow-xl transition-all duration-300 hover:bg-emerald-800 hover:scale-110 active:scale-95 opacity-0 invisible">
+                        <i class="fas fa-chevron-left text-lg"></i>
+                    </button>
+                    <button id="gallery-next" class="absolute right-0 top-1/2 -translate-y-1/2 translate-x-3 md:translate-x-6 z-20 w-12 h-12 flex items-center justify-center rounded-full bg-emerald-900 text-white shadow-xl transition-all duration-300 hover:bg-emerald-800 hover:scale-110 active:scale-95">
+                        <i class="fas fa-chevron-right text-lg"></i>
+                    </button>
+
+                    <!-- Carousel Container -->
+                    <div id="gallery-container" class="flex gap-6 overflow-x-auto snap-x snap-mandatory pb-10 pt-4 scrollbar-hide px-2" style="scrollbar-width: none; -ms-overflow-style: none;">
+                        <!-- Gallery items will be injected here via JS -->
+                    </div>
+                </div>
+
+                <!-- Draggable Progress Bar -->
+                <div class="w-full max-w-7xl mx-auto px-1">
+                    <div id="progress-track" class="relative w-full h-1 bg-gray-200 rounded-full mt-2 cursor-pointer group">
+                        <div class="absolute -top-4 -bottom-4 left-0 right-0 bg-transparent z-0"></div>
+                        <div id="progress-bar" class="absolute top-1/2 -translate-y-1/2 h-2 bg-emerald-900 rounded-full shadow-sm z-10 hover:h-3 transition-all duration-100 ease-out cursor-grab w-[15%]">
+                            <div class="absolute inset-0 bg-white/20 rounded-full transition-opacity opacity-0 group-hover:opacity-100"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TESTIMONI -->
+        <section id="testimonials" class="py-20 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-16">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900">Kata Mereka</h2>
+                    <div class="w-20 h-1 bg-gold-500 mx-auto mt-4 rounded"></div>
+                </div>
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <!-- Testimonial 1 -->
+                    <div class="bg-white p-8 rounded-2xl relative shadow-sm border border-gray-100">
+                        <i class="fas fa-quote-right text-emerald-100 text-5xl absolute top-4 right-6"></i>
+                        <p class="text-gray-600 italic mb-6 relative z-10">"Alhamdulillah, dulu saya terbata-bata baca Quran, setelah 3 bulan di kelas Tahsin, bacaan jadi lebih lancar dan tahu hukum tajwidnya."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-emerald-200 rounded-full flex items-center justify-center text-emerald-700 font-bold">R</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Rizky Pratama</h4>
+                                <p class="text-sm text-gray-500">Alumni Kelas Baca Quran</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 2 -->
+                    <div class="bg-white p-8 rounded-2xl relative shadow-sm border border-gray-100">
+                        <i class="fas fa-quote-right text-emerald-100 text-5xl absolute top-4 right-6"></i>
+                        <p class="text-gray-600 italic mb-6 relative z-10">"Penjelasan Ustadz di kelas Fiqih sangat mudah dipahami, tidak kaku, dan relevan dengan masalah sehari-hari pekerja kantoran."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-emerald-200 rounded-full flex items-center justify-center text-emerald-700 font-bold">A</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Aisyah Humaira</h4>
+                                <p class="text-sm text-gray-500">Peserta Kelas Fiqih</p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Testimonial 3 -->
+                    <div class="bg-white p-8 rounded-2xl relative shadow-sm border border-gray-100">
+                        <i class="fas fa-quote-right text-emerald-100 text-5xl absolute top-4 right-6"></i>
+                        <p class="text-gray-600 italic mb-6 relative z-10">"Sistem belajarnya rapi, adminnya fast respon. Sangat rekomen buat yang mau belajar Bahasa Arab dari dasar."</p>
+                        <div class="flex items-center gap-4">
+                            <div class="w-12 h-12 bg-emerald-200 rounded-full flex items-center justify-center text-emerald-700 font-bold">H</div>
+                            <div>
+                                <h4 class="font-bold text-gray-900">Hendra Wijaya</h4>
+                                <p class="text-sm text-gray-500">Peserta Kelas Bahasa Arab</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: FAQ -->
+        <section id="faq" class="py-20 bg-white border-t border-gray-100">
+            <div class="max-w-3xl mx-auto px-4 sm:px-6">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-gray-900">Pertanyaan yang Sering Ditanyakan</h2>
+                </div>
+                <div class="space-y-4">
+                    <!-- FAQ 1 -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md faq-item">
+                        <div class="flex justify-between items-center p-5 cursor-pointer bg-white hover:bg-gray-50 transition" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-emerald-900 text-lg pr-4">Apa saja Program Kampoeng Quran?</h3>
+                            <div class="faq-icon text-emerald-500 text-xl font-bold bg-emerald-50 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                <i class="fas fa-plus transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                        <div class="faq-content bg-gray-50/50">
+                            <div class="p-5 text-gray-600 leading-relaxed border-t border-gray-100">
+                                Program utama Kampoeng Quran Cendekia adalah Pesantren dengan legalitas SMP dan SMA, namun bagi yang hanya berminat mengaji ada program Takhassus.
+                            </div>
+                        </div>
+                    </div>
+					<!-- FAQ 2 -->
+					<div class="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md faq-item">
+                        <div class="flex justify-between items-center p-5 cursor-pointer bg-white hover:bg-gray-50 transition" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-emerald-900 text-lg pr-4">Apa saja Program Kampoeng Quran?</h3>
+                            <div class="faq-icon text-emerald-500 text-xl font-bold bg-emerald-50 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                <i class="fas fa-plus transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                        <div class="faq-content bg-gray-50/50">
+                            <div class="p-5 text-gray-600 leading-relaxed border-t border-gray-100">
+                                Program utama Kampoeng Quran Cendekia adalah Pesantren dengan legalitas SMP dan SMA, namun bagi yang hanya berminat mengaji ada program Takhassus.
+                            </div>
+                        </div>
+                    </div>			
+                     <!-- FAQ 3 -->
+                     <div class="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md faq-item">
+                        <div class="flex justify-between items-center p-5 cursor-pointer bg-white hover:bg-gray-50 transition" onclick="toggleFaq(this)">
+                            <h3 class="font-bold text-emerald-900 text-lg pr-4">Apa Mazhabnya yang diterapkan di pesantren?</h3>
+                            <div class="faq-icon text-emerald-500 text-xl font-bold bg-emerald-50 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
+                                <i class="fas fa-plus transition-transform duration-300"></i>
+                            </div>
+                        </div>
+                        <div class="faq-content bg-gray-50/50">
+                            <div class="p-5 text-gray-600 leading-relaxed border-t border-gray-100">
+                                Kami menerapkan mazhab Syafi'i dalam fiqih ibadah harian sebagai dasar pembelajaran, serta menjunjung tinggi nilai-nilai Ahlussunnah wal Jama'ah.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: TRUST ELEMENTS / LOGOS -->
+        <section class="py-10 border-t border-gray-200 bg-gray-50">
+            <div class="max-w-7xl mx-auto px-4 text-center">
+                <p class="text-sm text-gray-400 font-semibold uppercase tracking-widest mb-6">Partner & Metode Pendidikan</p>
+                <!-- PARTNER LOGO CONTAINER -->
+                <div class="no-scrollbar flex flex-nowrap justify-between md:justify-center items-center gap-8 md:gap-12 overflow-x-auto pb-4 md:pb-0 grayscale hover:grayscale-0 transition duration-500">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOeglhqO63pFW3bNE5nGqhg0s24gs7n65dJ7Jap4F4TTGRJi1lLGj753ErVMW1oS7SIPAbIzkAM9KT3EXbdlksCVGGLOrtGl8YeSsmQ-NsoHQ2YZiSWMxu_61IB_icBor97xDEieIgN0Iq3z-S8IXMi=w435-h100-s-no-gm?authuser=0" alt="Partner 1" class="h-9 md:h-10 w-auto object-contain shrink-0">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOeglhqO63pFW3bNE5nGqhg0s24gs7n65dJ7Jap4F4TTGRJi1lLGj753ErVMW1oS7SIPAbIzkAM9KT3EXbdlksCVGGLOrtGl8YeSsmQ-NsoHQ2YZiSWMxu_61IB_icBor97xDEieIgN0Iq3z-S8IXMi=w435-h100-s-no-gm?authuser=0" alt="Partner 2" class="h-9 md:h-10 w-auto object-contain shrink-0">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOeglhqO63pFW3bNE5nGqhg0s24gs7n65dJ7Jap4F4TTGRJi1lLGj753ErVMW1oS7SIPAbIzkAM9KT3EXbdlksCVGGLOrtGl8YeSsmQ-NsoHQ2YZiSWMxu_61IB_icBor97xDEieIgN0Iq3z-S8IXMi=w435-h100-s-no-gm?authuser=0" alt="Partner 3" class="h-9 md:h-10 w-auto object-contain shrink-0">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczOeglhqO63pFW3bNE5nGqhg0s24gs7n65dJ7Jap4F4TTGRJi1lLGj753ErVMW1oS7SIPAbIzkAM9KT3EXbdlksCVGGLOrtGl8YeSsmQ-NsoHQ2YZiSWMxu_61IB_icBor97xDEieIgN0Iq3z-S8IXMi=w435-h100-s-no-gm?authuser=0" alt="Partner 4" class="h-9 md:h-10 w-auto object-contain shrink-0">
+                </div>
+            </div>
+        </section>
+
+        <!-- SECTION: LOCATION MAP -->
+        <section id="location" class="py-20 bg-white border-t border-gray-100">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl lg:text-4xl font-serif font-bold text-emerald-900 mb-2">Lokasi Tempat Kursus</h2>
+                    <div class="w-16 h-1 bg-gold-500 mx-auto rounded"></div>
+                </div>
+                <div class="w-full h-96 bg-gray-100 rounded-3xl overflow-hidden shadow-xl border-4 border-white relative z-10">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3961.2740574065265!2d107.5654518!3d-6.85772!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e68e5e93df0dc55%3A0x119fadb7d6351ac3!2sKampoeng%20Quran%20Cendekia%20Atas%20(akhwat)!5e0!3m2!1sid!2sid!4v1769593448330!5m2!1sid!2sid" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+                <div class="text-center mt-8">
+                    <a href="https://maps.app.goo.gl/QeHxijuLSzehtF3x9" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center px-8 py-3 text-base font-medium text-white bg-emerald-600 rounded-full shadow-lg hover:bg-emerald-700 transition transform hover:-translate-y-1">
+                        <i class="fas fa-map-marked-alt mr-2"></i> Buka di Google Maps
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- DETAIL PAGE CONTAINER (DIPINDAHKAN KE SINI AGAR URUTANNYA BENAR SEBELUM FOOTER) -->
+    <div id="detail-page" class="hidden pt-24 pb-20 bg-white min-h-screen">
+        <div class="max-w-4xl mx-auto px-4 sm:px-6">
+            <button onclick="closeClassDetail()" class="mb-6 flex items-center text-gray-500 hover:text-emerald-600 transition">
+                <i class="fas fa-arrow-left mr-2"></i> Kembali ke Daftar Kelas
+            </button>
+            <div id="detail-content" class="fade-in"></div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-emerald-900 text-emerald-100 pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-4 gap-8 mb-12">
+            <div class="col-span-1 md:col-span-2">
+                <div class="flex items-center mb-4">
+                    <img src="https://lh3.googleusercontent.com/pw/AP1GczNCfFMdcxnvfuMuUryRFX8nrQIpzR1t8J_GXyhW4yplRI0hrorI6Db9oAqGlkBrdR6Ukm60HDOnBpuOq6Jmtmfkcj1O-bVKfj60ZQuygNwobasTRUWQr5Csdfd3LTs6mhumX336i3IWwEc-eG2c3-bS=w435-h100-s-no-gm?authuser=0" alt="Logo Footer" class="h-12 w-auto object-contain mr-2">
+                </div>
+                <p class="text-emerald-200/80 mb-6 max-w-sm">Membantu umat Islam mempelajari agama dengan manhaj yang benar, mudah, dan terstruktur.</p>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Program</h4>
+                <ul class="space-y-2 text-sm">
+                    <li><a href="#" class="hover:text-gold-500 transition">Baca Al-Quran</a></li>
+                    <li><a href="#" class="hover:text-gold-500 transition">Bahasa Arab</a></li>
+                    <li><a href="#" class="hover:text-gold-500 transition">Fiqih & Ibadah</a></li>
+                    <li><a href="#" class="hover:text-gold-500 transition">Tahsin & Tajwid</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-bold mb-4">Kontak</h4>
+                <ul class="space-y-2 text-sm">
+                    <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-2 text-gold-500"></i> Jl. Dakwah No. 123, Jakarta Selatan</li>
+                    <li class="flex items-center"><i class="fas fa-phone mr-2 text-gold-500"></i> +62 812-3456-7890</li>
+                    <li class="flex items-center"><i class="fas fa-envelope mr-2 text-gold-500"></i> info@madrasahilmi.com</li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-emerald-800 pt-8 text-center text-sm text-emerald-400">
+            &copy; 2024 Madrasah Ilmi. All Rights Reserved.
+        </div>
+    </footer>
+
+    <!-- WIDGETS & MODALS -->
+    
+    <!-- WHATSAPP WIDGET -->
+    <div id="wa-widget" class="fixed bottom-6 right-6 z-[80] font-sans flex flex-col items-end gap-2">
+        <div id="wa-chat-box" class="hidden bg-white rounded-xl shadow-2xl w-80 mb-2 overflow-hidden transform origin-bottom-right transition-all duration-300 border border-gray-100">
+            <div class="bg-emerald-600 p-4 text-white flex items-center shadow-md">
+                <div class="relative mr-3">
+                    <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop" alt="Admin" class="w-10 h-10 rounded-full object-cover border-2 border-emerald-400">
+                    <span class="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-400 border border-emerald-600 rounded-full"></span>
+                </div>
+                <div>
+                    <h4 class="font-bold text-sm leading-tight">Admin Madrasah Ilmi</h4>
+                    <p class="text-[10px] text-emerald-100">Online • Biasanya membalas cepat</p>
+                </div>
+                <button onclick="toggleWaWidget()" class="ml-auto text-emerald-100 hover:text-white transition">
+                    <i class="fas fa-times text-lg"></i>
+                </button>
+            </div>
+            <div class="p-4 bg-[#e5ddd5] h-64 flex flex-col overflow-y-auto custom-scrollbar" style="background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');">
+                <div class="bg-white p-3 rounded-b-lg rounded-tr-lg shadow-sm self-start max-w-[85%] text-sm text-gray-800 mb-2 relative">
+                    <p class="mb-1">Assalamualaikum, ada yang bisa kami bantu?</p>
+                    <span class="text-[10px] text-gray-400 block text-right">Just now</span>
+                </div>
+            </div>
+            <div class="p-3 bg-white border-t border-gray-100 flex items-center gap-2">
+                <input type="text" id="wa-input" class="flex-1 bg-gray-100 border-none rounded-full px-4 py-2 text-sm focus:ring-2 focus:ring-emerald-500 outline-none" placeholder="Ketik pesan...">
+                <button onclick="sendWaMessage()" class="w-10 h-10 bg-emerald-600 hover:bg-emerald-700 text-white rounded-full flex items-center justify-center transition shadow-md transform active:scale-95">
+                    <i class="fas fa-paper-plane text-xs"></i>
+                </button>
+            </div>
+        </div>
+        <button onclick="toggleWaWidget()" class="w-14 h-14 bg-green-500 hover:bg-green-600 text-white rounded-full flex items-center justify-center shadow-lg transition-all duration-300 transform hover:scale-110 hover:rotate-12 relative group z-50">
+            <i class="fab fa-whatsapp text-3xl"></i>
+            <span class="absolute top-0 right-0 w-3.5 h-3.5 bg-red-500 rounded-full border-2 border-white animate-bounce"></span>
+        </button>
+    </div>
+
+    <!-- MODAL: VIDEO -->
+    <div id="video-modal" class="fixed inset-0 z-[60] hidden bg-black/90 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="relative w-full max-w-4xl aspect-video bg-black rounded-lg shadow-2xl overflow-hidden">
+            <button onclick="closeVideoModal()" class="absolute top-4 right-4 z-10 text-white hover:text-red-500 text-3xl">
+                <i class="fas fa-times"></i>
+            </button>
+            <iframe id="video-frame" class="w-full h-full" src="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- MODAL: GALLERY LIGHTBOX (NEW) -->
+    <div id="gallery-modal" class="fixed inset-0 z-[80] hidden bg-black/95 backdrop-blur-sm flex flex-col items-center justify-center animate-in fade-in duration-300">
+        <!-- Close Button -->
+        <button onclick="closeGalleryModal()" class="absolute top-4 right-4 text-white/70 hover:text-white p-2 z-50 hover:bg-white/10 rounded-full transition-colors">
+            <i class="fas fa-times text-2xl md:text-3xl"></i>
+        </button>
+
+        <!-- Main Content Area -->
+        <div class="flex-1 w-full flex items-center justify-center relative px-4 md:px-16 pb-24 pt-4 h-full">
+            <!-- Navigasi Kiri -->
+            <button onclick="navigateGallery('prev', event)" class="absolute left-2 md:left-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 hover:bg-white/10 rounded-full transition-all">
+                <i class="fas fa-chevron-left text-3xl md:text-4xl"></i>
+            </button>
+
+            <!-- Foto Utama -->
+            <div class="relative max-h-full max-w-full group">
+                <img id="gallery-modal-img" src="" alt="" class="max-h-[70vh] w-auto object-contain shadow-2xl rounded-sm">
+                <div class="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white rounded-b-sm">
+                    <h3 id="gallery-modal-title" class="text-xl font-light"></h3>
+                    <p id="gallery-modal-desc" class="text-sm text-white/70"></p>
+                </div>
+            </div>
+
+            <!-- Navigasi Kanan -->
+            <button onclick="navigateGallery('next', event)" class="absolute right-2 md:right-8 top-1/2 -translate-y-1/2 text-white/50 hover:text-white p-2 hover:bg-white/10 rounded-full transition-all">
+                <i class="fas fa-chevron-right text-3xl md:text-4xl"></i>
+            </button>
+        </div>
+
+        <!-- Thumbnail Strip -->
+        <div class="absolute bottom-0 left-0 right-0 h-24 bg-black/40 flex items-center justify-center px-4 overflow-x-auto">
+            <div id="gallery-thumbnails" class="flex gap-2">
+                <!-- Thumbnails injected via JS -->
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL: REGISTER FORM -->
+    <div id="register-modal" class="fixed inset-0 z-[60] hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+        <div class="bg-white rounded-2xl shadow-2xl w-full max-w-lg transform scale-95 opacity-0 transition-all duration-300 max-h-[90vh] overflow-y-auto custom-scrollbar" id="register-panel">
+            <div class="p-6 border-b border-gray-100 flex justify-between items-center bg-emerald-50 rounded-t-2xl sticky top-0 bg-opacity-100 z-10">
+                <h3 class="text-xl font-bold text-emerald-900">Formulir Pendaftaran</h3>
+                <button onclick="closeRegisterModal()" class="text-gray-400 hover:text-red-500 text-xl"><i class="fas fa-times"></i></button>
+            </div>
+            
+            <form id="registration-form" class="p-6 space-y-4">
+                <!-- Nama Lengkap -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Lengkap</label>
+                    <input type="text" name="fullname" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" placeholder="Sesuai KTP">
+                </div>
+                <!-- Nama Panggilan -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Nama Panggilan</label>
+                    <input type="text" name="nickname" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" placeholder="Nama Akrab">
+                </div>
+                <!-- Jenis Kelamin -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Kelamin</label>
+                    <div class="grid grid-cols-2 gap-4">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="gender" value="Laki-laki" class="peer sr-only" required>
+                            <div class="px-4 py-2 border text-center rounded-lg text-sm hover:bg-gray-50 peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition flex items-center justify-center gap-2">
+                                <i class="fas fa-mars"></i> Laki-laki
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="gender" value="Perempuan" class="peer sr-only">
+                            <div class="px-4 py-2 border text-center rounded-lg text-sm hover:bg-gray-50 peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition flex items-center justify-center gap-2">
+                                <i class="fas fa-venus"></i> Perempuan
+                            </div>
+                        </label>
+                    </div>
+                </div>
+                <!-- No Whatsapp -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">No. WhatsApp</label>
+                    <div class="relative">
+                        <span class="absolute left-3 top-2 text-gray-500 font-medium">+62</span>
+                        <input type="number" name="wa" required class="w-full pl-12 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" placeholder="8123456789">
+                    </div>
+                </div>
+                <!-- Alamat -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Alamat</label>
+                    <textarea name="address" required class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 outline-none transition" placeholder="Alamat Lengkap (Jalan, Kota, Provinsi)"></textarea>
+                </div>
+                <!-- Pilihan Kelas -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-1">Pilihan Kelas</label>
+                    <select id="kelas-select" name="category" onchange="updateScheduleOptions(this.value)" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 font-medium text-emerald-800 focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <option value="Tahsin">Kelas Baca Al-Quran</option>
+                        <option value="Bahasa Arab">Kelas Bahasa Arab</option>
+                        <option value="Fiqih">Kelas Fiqih Ibadah</option>
+                        <option value="Tajwid">Kelas Tajwid Intensif</option>
+                        <option value="Tafsir">Kelas Tafsir Al-Quran</option>
+                    </select>
+                </div>
+                <!-- Pilihan Jadwal -->
+                <div id="schedule-container" class="animate-fade-in">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Jadwal</label>
+                    <div id="schedule-options" class="space-y-3">
+                        <p class="text-sm text-gray-500 italic p-3 bg-gray-50 rounded-lg border border-gray-200">Silahkan pilih kelas terlebih dahulu.</p>
+                    </div>
+                </div>
+                <!-- Kemampuan Baca Quran -->
+                <div>
+                    <label class="block text-sm font-medium text-gray-700 mb-2">Kemampuan Baca Al-Quran</label>
+                    <div class="grid grid-cols-3 gap-2">
+                        <label class="cursor-pointer">
+                            <input type="radio" name="ability" value="Nol" class="peer sr-only" required>
+                            <div class="px-2 py-2 border text-center rounded-lg text-sm hover:bg-gray-50 peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition">
+                                Belum Bisa (Nol)
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="ability" value="Iqro" class="peer sr-only">
+                            <div class="px-2 py-2 border text-center rounded-lg text-sm hover:bg-gray-50 peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition">
+                                Iqro / Terbata
+                            </div>
+                        </label>
+                        <label class="cursor-pointer">
+                            <input type="radio" name="ability" value="Al-Quran" class="peer sr-only">
+                            <div class="px-2 py-2 border text-center rounded-lg text-sm hover:bg-gray-50 peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition">
+                                Lancar Al-Quran
+                            </div>
+                        </label>
+                    </div>
+                </div>
+
+                <button type="submit" id="btn-submit" class="w-full bg-emerald-600 text-white font-bold py-3 rounded-lg hover:bg-emerald-700 transition shadow-lg mt-4 flex justify-center items-center">
+                    <span>Daftar Sekarang</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- SUCCESS MODAL -->
+    <div id="success-modal" class="fixed inset-0 z-[70] hidden bg-black/70 backdrop-blur-sm flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 text-center max-w-sm transform scale-95 opacity-0 transition-all duration-300" id="success-panel">
+            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-check text-3xl text-green-600"></i>
+            </div>
+            <h3 class="text-2xl font-bold text-gray-900 mb-2">Pendaftaran Berhasil!</h3>
+            <p class="text-gray-600 mb-6">Alhamdulillah pendaftaran berhasil, silahkan bergabung grup WA untuk Informasi selanjutnya!</p>
+            <a href="https://chat.whatsapp.com/Fe3xs82rs6r2b7fZyJVm4G" target="_blank" class="block w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-lg transition mb-3">
+                <i class="fab fa-whatsapp mr-2"></i> Gabung Grup WhatsApp
+            </a>
+            <button onclick="closeSuccessModal()" class="text-sm text-gray-400 hover:text-gray-600 underline">Tutup</button>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        /* -----------------------------------------------------
+           CONFIG & DATA
+           ----------------------------------------------------- */
+        const VIDEO_PROFIL_URL = "https://www.youtube.com/embed/bFFzd89-uKk"; 
+        const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3Urh7RszE6LGDEFKJm7gS3kShJw_Ir6xruJNUos9uUlUPphHz2qnME4dxOcPfvmjw/exec'; 
+
+        // DATA KELAS
+        const classData = {
+            quran: {
+                title: "Kelas Baca Al-Quran (Tahsin Dasar)",
+                img: "https://images.unsplash.com/photo-1584286595398-a59f21d313f5?q=80&w=1000&auto=format&fit=crop",
+                desc: "Program ini didesain khusus untuk pemula yang ingin belajar membaca Al-Quran dari nol.<br><br><b>Target Pembelajaran:</b><br>Peserta diharapkan mampu memperbaiki bacaan yang masih <i>terbata-bata</i> dan memahami <u>kaidah dasar tajwid</u> dengan baik.",
+                syllabus: ["Pengenalan Huruf Hijaiyah", "Makharijul Huruf", "Sifat-sifat Huruf", "Latihan Membaca Kata Sambung", "Evaluasi Bacaan Al-Fatihah"],
+                price: "Rp 150.000 / bulan",
+                selectValue: "Tahsin",
+                schedules: [
+                    { type: 'Online', times: ['Senin & Rabu | 19.30 – 21.00', 'Selasa & Kamis | 05.30 – 07.00', 'Sabtu & Ahad | 08.00 – 09.30'] },
+                    { type: 'Offline', times: ['Sabtu & Ahad | 09.00 – 11.00 (Jakarta)', 'Sabtu & Ahad | 16.00 – 17.30 (Jakarta)'] }
+                ]
+            },
+            arab: {
+                title: "Kelas Bahasa Arab (Nahwu Shorof)",
+                img: "https://images.unsplash.com/photo-1555679427-1f6dfcce943b?q=80&w=1000&auto=format&fit=crop",
+                desc: "Pelajari kaidah bahasa Arab dasar (Nahwu & Shorof) untuk memahami teks Arab gundul dan percakapan dasar.",
+                syllabus: ["Pengenalan Kalimah", "Tanda-tanda I'rob", "Jumlah Mufidah", "Tashrif Lughowi & Istilahi", "Praktek Baca Kitab Gundul"],
+                price: "Rp 200.000 / bulan",
+                selectValue: "Bahasa Arab",
+                schedules: [
+                    { type: 'Online', times: ['Senin & Rabu | 19.00 – 20.30'] },
+                    { type: 'Offline', times: ['Sabtu | 09.30 – 11.00'] }
+                ]
+            },
+            fiqih: {
+                title: "Kelas Fiqih Ibadah",
+                img: "https://images.unsplash.com/photo-1596541539243-559d1c0800b7?q=80&w=1000&auto=format&fit=crop",
+                desc: "Mempelajari tata cara ibadah sehari-hari yang benar sesuai tuntunan Rasulullah SAW berdasarkan madzhab Syafi'i.",
+                syllabus: ["Thaharah", "Shalat Fardhu & Sunnah", "Fiqih Janaiz", "Zakat & Puasa", "Tanya Jawab Studi Kasus"],
+                price: "Rp 150.000 / bulan",
+                selectValue: "Fiqih",
+                schedules: [
+                    { type: 'Online', times: ['Jumat | 20.00 – 21.30'] },
+                    { type: 'Offline', times: ['Tidak tersedia untuk saat ini'] }
+                ]
+            },
+             tajwid: {
+                title: "Kelas Tajwid Intensif",
+                img: "https://images.unsplash.com/photo-1621160471512-58e1c64eb3d0?q=80&w=1000&auto=format&fit=crop",
+                desc: "Pendalaman hukum bacaan Al-Quran bagi yang sudah lancar membaca namun ingin menyempurnakan tajwidnya.",
+                syllabus: ["Hukum Nun Mati & Tanwin", "Hukum Mim Mati", "Macam-macam Mad", "Hukum Ro & Lam", "Waqaf & Ibtida'"],
+                price: "Rp 175.000 / bulan",
+                selectValue: "Tajwid",
+                schedules: [
+                    { type: 'Online', times: ['Selasa & Kamis | 19.30 – 21.00'] },
+                    { type: 'Offline', times: ['Ahad | 09.00 – 11.00'] }
+                ]
+            },
+            tafsir: {
+                title: "Kelas Tafsir Al-Quran",
+                img: "https://images.unsplash.com/photo-1519817650390-64a93db51149?q=80&w=1000&auto=format&fit=crop",
+                desc: "Mengkaji makna ayat-ayat pilihan (Juz 30) untuk mengambil pelajaran (ibrah) dalam kehidupan.",
+                syllabus: ["Pengantar Ilmu Tafsir", "Tafsir Surah An-Naba s.d An-Nas", "Asbabun Nuzul", "Tadabbur Makna", "Aplikasi Ayat dalam Kehidupan"],
+                price: "Gratis / Infaq Seikhlasnya",
+                selectValue: "Tafsir",
+                schedules: [
+                 	{ type: 'Online', times: ['Ahad | 08.00 – 09.30', 'Ahad | 09.30 – 11.00', 'Ahad | 13.00 – 14.30'] },
+                    { type: 'Offline', times: ['Ahad | 08.00 – 09.30'] }
+                ]
+            }
+        };
+
+        // DATA GALERI (FROM REACT MOCKUP)
+        const GALLERY_ITEMS = [
+          { id: 1, label: 'Suasana Kelas', image: 'https://images.unsplash.com/photo-1556228453-efd6c1ff04f6?q=80&w=1000&auto=format&fit=crop', alt: 'Ruang Belajar Nyaman' },
+          { id: 2, label: 'Asrama Santri', image: 'https://images.unsplash.com/photo-1616594039964-40891a911a25?q=80&w=1000&auto=format&fit=crop', alt: 'Kamar Asrama Bersih' },
+          { id: 3, label: 'Area Hijau', image: 'https://images.unsplash.com/photo-1594026112284-02bb6f3352fe?q=80&w=1000&auto=format&fit=crop', alt: 'Taman Kampoeng Quran' },
+          { id: 4, label: 'Perpustakaan', image: 'https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1000&auto=format&fit=crop', alt: 'Koleksi Kitab Lengkap' },
+          { id: 5, label: 'Ruang Diskusi', image: 'https://images.unsplash.com/photo-1493663284031-b7e3aefcae8e?q=80&w=1000&auto=format&fit=crop', alt: 'Area Diskusi Santai' },
+          { id: 6, label: 'Masjid', image: 'https://images.unsplash.com/photo-1534349762913-96c87130f6bf?q=80&w=1000&auto=format&fit=crop', alt: 'Pusat Ibadah' }
+        ];
+
+        /* -----------------------------------------------------
+           UI FUNCTIONS - GENERAL
+           ----------------------------------------------------- */
+
+        function toggleMobileMenu() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        }
+
+        function scrollToSection(id) {
+            showLandingPage();
+            setTimeout(() => {
+                const el = document.getElementById(id);
+                if(el) el.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+
+        function showLandingPage() {
+            document.getElementById('main-content').classList.remove('hidden');
+            document.getElementById('detail-page').classList.add('hidden');
+            window.scrollTo(0,0);
+        }
+
+        /* -----------------------------------------------------
+           UI FUNCTIONS - CLASS DETAIL & REGISTER
+           ----------------------------------------------------- */
+
+        function openClassDetail(classKey) {
+            const data = classData[classKey];
+            if(!data) return;
+
+            const contentDiv = document.getElementById('detail-content');
+            contentDiv.innerHTML = `
+                <div class="grid md:grid-cols-2 gap-8 mb-10">
+                    <img src="${data.img}" class="w-full h-80 object-cover rounded-2xl shadow-lg" alt="${data.title}">
+                    <div class="flex flex-col justify-center">
+                        <span class="text-emerald-600 font-bold uppercase tracking-wider mb-2">Detail Program</span>
+                        <h1 class="text-3xl md:text-4xl font-serif font-bold text-gray-900 mb-4">${data.title}</h1>
+                        <p class="text-lg text-gray-600 mb-6">${data.desc}</p>
+                        <div class="space-y-3 mb-6 bg-emerald-50 p-6 rounded-xl border border-emerald-100">
+                            <div class="flex items-center text-gray-700"><i class="fas fa-tag w-8 text-emerald-600"></i> <span class="font-semibold">Infaq:</span>&nbsp; ${data.price}</div>
+                            <div class="flex items-center text-gray-700 text-sm italic mt-2"><i class="fas fa-info-circle w-8 text-emerald-600"></i> Jadwal lengkap tersedia saat klik tombol daftar.</div>
+                        </div>
+                        <button onclick="openRegisterModal('${data.selectValue}')" class="bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold py-3 px-8 rounded-full shadow-lg transition transform hover:-translate-y-1 text-center">
+                            Daftar Kelas Ini Sekarang
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="bg-white border border-gray-200 rounded-2xl p-8 shadow-sm">
+                    <h3 class="text-2xl font-bold text-gray-800 mb-6 border-b pb-4">Materi yang akan dipelajari</h3>
+                    <ul class="grid md:grid-cols-2 gap-4">
+                        ${data.syllabus.map(item => `<li class="flex items-start"><i class="fas fa-check-circle text-green-500 mt-1 mr-3"></i><span class="text-gray-700 text-lg">${item}</span></li>`).join('')}
+                    </ul>
+                </div>
+            `;
+            document.getElementById('main-content').classList.add('hidden');
+            document.getElementById('detail-page').classList.remove('hidden');
+            window.scrollTo({ top: 0, behavior: 'instant' });
+        }
+
+        function closeClassDetail() { showLandingPage(); }
+
+        function openRegisterModal(className) {
+            const modal = document.getElementById('register-modal');
+            const panel = document.getElementById('register-panel');
+            const select = document.getElementById('kelas-select');
+            
+            modal.classList.remove('hidden');
+            if(className && className !== 'Umum') select.value = className;
+            updateScheduleOptions(select.value);
+
+            setTimeout(() => {
+                panel.classList.remove('scale-95', 'opacity-0');
+                panel.classList.add('scale-100', 'opacity-100');
+            }, 10);
+        }
+
+        function closeRegisterModal() {
+            const modal = document.getElementById('register-modal');
+            const panel = document.getElementById('register-panel');
+            panel.classList.remove('scale-100', 'opacity-100');
+            panel.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => { modal.classList.add('hidden'); }, 300);
+        }
+
+        function updateScheduleOptions(selectedClassName) {
+            const container = document.getElementById('schedule-options');
+            container.innerHTML = ''; 
+            let selectedKey = null;
+            for(const [key, data] of Object.entries(classData)) {
+                if(data.selectValue === selectedClassName) { selectedKey = key; break; }
+            }
+            if(selectedKey && classData[selectedKey].schedules) {
+                classData[selectedKey].schedules.forEach((group) => {
+                    const accordionItem = document.createElement('div');
+                    accordionItem.className = "border border-gray-200 rounded-lg mb-2 overflow-hidden bg-white shadow-sm transition-all duration-300";
+                    const iconClass = group.type === 'Online' ? 'fa-laptop' : 'fa-users';
+                    
+                    const header = document.createElement('button');
+                    header.type = "button"; 
+                    header.className = "w-full flex justify-between items-center p-3 bg-gray-50 hover:bg-emerald-50 transition text-left focus:outline-none group";
+                    header.innerHTML = `
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 rounded-full bg-white flex items-center justify-center border border-gray-200 mr-3 shadow-sm group-hover:border-emerald-200 group-hover:text-emerald-600 transition">
+                                <i class="fas ${iconClass} text-gray-500 group-hover:text-emerald-600 text-sm"></i>
+                            </div>
+                            <div>
+                                <span class="font-bold text-gray-800 text-sm block">${group.type}</span>
+                                <span class="text-xs text-gray-400 font-normal">${group.times.length} Opsi Jadwal</span>
+                            </div>
+                        </div>
+                        <i class="fas fa-chevron-down text-gray-400 accordion-arrow"></i>
+                    `;
+                    const content = document.createElement('div');
+                    content.className = "hidden p-3 bg-white border-t border-gray-100 space-y-2";
+                    group.times.forEach(time => {
+                         const label = document.createElement('label');
+                        label.className = "flex items-start p-2 rounded hover:bg-emerald-50 cursor-pointer border border-transparent hover:border-emerald-100 transition";
+                        const disabled = time.toLowerCase().includes('tidak tersedia');
+                        const formattedValue = time.includes('|') ? time.replace('|', `| ${group.type} |`) : `${group.type} - ${time}`;
+                        label.innerHTML = `
+                            <input type="radio" name="schedule" value="${formattedValue}" class="mt-1 mr-2 text-emerald-600 focus:ring-emerald-500" required ${disabled ? 'disabled' : ''}>
+                            <span class="text-sm text-gray-700 ${disabled ? 'text-gray-400 italic' : ''}">${time}</span>
+                        `;
+                        content.appendChild(label);
+                    });
+                    header.onclick = () => {
+                        const isHidden = content.classList.contains('hidden');
+                        if(isHidden) {
+                            content.classList.remove('hidden');
+                            accordionItem.classList.add('accordion-open');
+                            header.classList.add('bg-emerald-50');
+                        } else {
+                            content.classList.add('hidden');
+                            accordionItem.classList.remove('accordion-open');
+                            header.classList.remove('bg-emerald-50');
+                        }
+                    };
+                    accordionItem.appendChild(header);
+                    accordionItem.appendChild(content);
+                    container.appendChild(accordionItem);
+                });
+            } else {
+                 container.innerHTML = '<p class="text-sm text-gray-500 italic p-3 bg-gray-50 rounded-lg border border-gray-200">Jadwal belum tersedia.</p>';
+            }
+        }
+
+        /* -----------------------------------------------------
+           FORM & WIDGET LOGIC
+           ----------------------------------------------------- */
+        
+        document.getElementById('registration-form').addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = document.getElementById('btn-submit');
+            const originalText = btn.innerHTML;
+            btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Mengirim...';
+            btn.disabled = true;
+            const formData = new FormData(e.target);
+            fetch(GOOGLE_SCRIPT_URL, { method: 'POST', mode: 'no-cors', body: formData })
+            .then(() => {
+                closeRegisterModal();
+                const modal = document.getElementById('success-modal');
+                const panel = document.getElementById('success-panel');
+                modal.classList.remove('hidden');
+                setTimeout(() => { panel.classList.remove('scale-95', 'opacity-0'); panel.classList.add('scale-100', 'opacity-100'); }, 10);
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+                e.target.reset();
+            })
+            .catch(err => { console.error(err); btn.innerHTML = originalText; btn.disabled = false; });
+        });
+
+        function closeSuccessModal() { document.getElementById('success-modal').classList.add('hidden'); }
+
+        function openVideoModal() {
+            const modal = document.getElementById('video-modal');
+            document.getElementById('video-frame').src = `${VIDEO_PROFIL_URL}?autoplay=1`;
+            modal.classList.remove('hidden');
+        }
+        function closeVideoModal() {
+            document.getElementById('video-modal').classList.add('hidden');
+            document.getElementById('video-frame').src = "";
+        }
+
+        function toggleWaWidget() { document.getElementById('wa-chat-box').classList.toggle('hidden'); }
+        function sendWaMessage() {
+            const msg = document.getElementById('wa-input').value;
+            if(!msg) return;
+            window.open(`https://wa.me/6281214880408?text=${encodeURIComponent(msg)}`, '_blank');
+            document.getElementById('wa-input').value = '';
+        }
+
+        function toggleFaq(header) {
+            const item = header.parentElement;
+            const content = item.querySelector('.faq-content');
+            const icon = item.querySelector('.faq-icon i');
+            const iconBox = item.querySelector('.faq-icon');
+
+            document.querySelectorAll('.faq-item').forEach(other => {
+                if(other !== item && other.classList.contains('active')) {
+                    other.classList.remove('active');
+                    other.querySelector('.faq-content').style.maxHeight = 0;
+                    other.querySelector('.faq-icon i').classList.remove('rotate-45');
+                    other.querySelector('.faq-icon').classList.replace('bg-emerald-500','bg-emerald-50');
+                    other.querySelector('.faq-icon').classList.replace('text-white','text-emerald-500');
+                }
+            });
+
+            item.classList.toggle('active');
+            if(item.classList.contains('active')) {
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.classList.add('rotate-45');
+                iconBox.classList.replace('bg-emerald-50','bg-emerald-500');
+                iconBox.classList.replace('text-emerald-500','text-white');
+            } else {
+                content.style.maxHeight = 0;
+                icon.classList.remove('rotate-45');
+                iconBox.classList.replace('bg-emerald-500','bg-emerald-50');
+                iconBox.classList.replace('text-white','text-emerald-500');
+            }
+        }
+
+        window.onclick = function(e) {
+            if(e.target == document.getElementById('video-modal')) closeVideoModal();
+            if(e.target == document.getElementById('register-modal')) closeRegisterModal();
+            if(e.target == document.getElementById('success-modal')) closeSuccessModal();
+            if(e.target == document.getElementById('gallery-modal')) closeGalleryModal();
+        }
+
+        /* -----------------------------------------------------
+           GALLERY CAROUSEL LOGIC (VANILLA JS PORT FROM REACT)
+           ----------------------------------------------------- */
+        
+        // 1. Render Gallery Items
+        const galleryContainer = document.getElementById('gallery-container');
+        
+        function renderGallery() {
+            galleryContainer.innerHTML = GALLERY_ITEMS.map(item => `
+                <div class="relative flex-shrink-0 w-[80vw] sm:w-[45vw] md:w-[30vw] lg:w-[22vw] snap-center group/card cursor-pointer"
+                     onclick="openGalleryModal(${item.id})">
+                    <div class="aspect-square overflow-hidden rounded-sm shadow-sm bg-gray-200 relative">
+                        <img src="${item.image}" alt="${item.alt}" draggable="false" class="w-full h-full object-cover transition-transform duration-700 group-hover/card:scale-110" loading="lazy">
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent opacity-0 group-hover/card:opacity-100 transition-opacity duration-300 flex items-center justify-center">
+                            <span class="text-white bg-black/30 px-4 py-2 rounded-full backdrop-blur-sm text-sm opacity-0 translate-y-4 group-hover/card:opacity-100 group-hover/card:translate-y-0 transition-all duration-500">Lihat Foto</span>
+                        </div>
+                    </div>
+                    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-10 pointer-events-none w-full text-center">
+                        <div class="inline-block bg-white px-6 py-3 rounded-full shadow-lg">
+                            <span class="text-gray-800 font-medium text-sm tracking-wide block whitespace-nowrap">${item.label}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+        renderGallery();
+
+        // 2. Carousel Scroll Logic
+        const prevBtn = document.getElementById('gallery-prev');
+        const nextBtn = document.getElementById('gallery-next');
+
+        function updateScrollButtons() {
+            const { scrollLeft, scrollWidth, clientWidth } = galleryContainer;
+            const maxScroll = scrollWidth - clientWidth;
+            
+            // Show/Hide Left Button
+            if (scrollLeft > 10) {
+                prevBtn.classList.remove('opacity-0', 'invisible');
+                prevBtn.classList.add('opacity-100', 'visible');
+            } else {
+                prevBtn.classList.add('opacity-0', 'invisible');
+                prevBtn.classList.remove('opacity-100', 'visible');
+            }
+
+            // Show/Hide Right Button
+            if (scrollLeft < maxScroll - 10) {
+                nextBtn.classList.remove('opacity-0', 'invisible');
+                nextBtn.classList.add('opacity-100', 'visible');
+            } else {
+                nextBtn.classList.add('opacity-0', 'invisible');
+                nextBtn.classList.remove('opacity-100', 'visible');
+            }
+
+            // Update Progress Bar
+            const percent = maxScroll > 0 ? (scrollLeft / maxScroll) * 100 : 0;
+            const bar = document.getElementById('progress-bar');
+            bar.style.left = percent + '%';
+            bar.style.transform = `translate(-${percent}%, -50%)`;
+        }
+
+        // Attach Scroll Event
+        galleryContainer.addEventListener('scroll', updateScrollButtons);
+        window.addEventListener('resize', updateScrollButtons);
+        // Initial check
+        setTimeout(updateScrollButtons, 100);
+
+        // Button Click Handlers
+        prevBtn.onclick = () => {
+            galleryContainer.scrollBy({ left: -galleryContainer.clientWidth * 0.75, behavior: 'smooth' });
+        };
+        nextBtn.onclick = () => {
+            galleryContainer.scrollBy({ left: galleryContainer.clientWidth * 0.75, behavior: 'smooth' });
+        };
+
+        // 3. Draggable Progress Bar Logic
+        const track = document.getElementById('progress-track');
+        let isDragging = false;
+        let startX = 0;
+        let initialScrollLeft = 0;
+
+        track.addEventListener('mousedown', startDrag);
+        track.addEventListener('touchstart', (e) => startDrag(e.touches[0]));
+
+        function startDrag(e) {
+            isDragging = true;
+            startX = e.clientX;
+            initialScrollLeft = galleryContainer.scrollLeft;
+            galleryContainer.style.scrollSnapType = 'none';
+            document.body.style.cursor = 'grabbing';
+            document.getElementById('progress-bar').classList.add('cursor-grabbing', 'h-3');
+            
+            window.addEventListener('mousemove', onDragMove);
+            window.addEventListener('touchmove', onTouchDragMove, { passive: false });
+            window.addEventListener('mouseup', endDrag);
+            window.addEventListener('touchend', endDrag);
+        }
+
+        function onDragMove(e) {
+            if (!isDragging) return;
+            const deltaX = e.clientX - startX;
+            calculateScroll(deltaX);
+        }
+
+        function onTouchDragMove(e) {
+            if (!isDragging) return;
+            e.preventDefault();
+            const deltaX = e.touches[0].clientX - startX;
+            calculateScroll(deltaX);
+        }
+
+        function calculateScroll(deltaX) {
+            const trackWidth = track.clientWidth;
+            const maxScroll = galleryContainer.scrollWidth - galleryContainer.clientWidth;
+            // Faktor 0.85 untuk kompensasi lebar bar itu sendiri
+            const scrollDelta = (deltaX / (trackWidth * 0.85)) * maxScroll;
+            galleryContainer.scrollLeft = initialScrollLeft + scrollDelta;
+        }
+
+        function endDrag() {
+            isDragging = false;
+            galleryContainer.style.scrollSnapType = 'x mandatory';
+            document.body.style.cursor = 'default';
+            document.getElementById('progress-bar').classList.remove('cursor-grabbing', 'h-3');
+            
+            window.removeEventListener('mousemove', onDragMove);
+            window.removeEventListener('touchmove', onTouchDragMove);
+            window.removeEventListener('mouseup', endDrag);
+            window.removeEventListener('touchend', endDrag);
+        }
+
+        /* -----------------------------------------------------
+           GALLERY MODAL LIGHTBOX LOGIC
+           ----------------------------------------------------- */
+        let currentModalIndex = -1;
+
+        function openGalleryModal(id) {
+            const index = GALLERY_ITEMS.findIndex(item => item.id === id);
+            if (index === -1) return;
+            currentModalIndex = index;
+            updateGalleryModalContent();
+            
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Lock scroll
+            
+            // Add keyboard listener
+            document.addEventListener('keydown', handleGalleryKeydown);
+        }
+
+        function closeGalleryModal() {
+            const modal = document.getElementById('gallery-modal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = ''; // Unlock scroll
+            document.removeEventListener('keydown', handleGalleryKeydown);
+        }
+
+        function updateGalleryModalContent() {
+            const item = GALLERY_ITEMS[currentModalIndex];
+            document.getElementById('gallery-modal-img').src = item.image;
+            document.getElementById('gallery-modal-title').innerText = item.label;
+            document.getElementById('gallery-modal-desc').innerText = item.alt;
+
+            // Update Thumbnails
+            const thumbContainer = document.getElementById('gallery-thumbnails');
+            thumbContainer.innerHTML = GALLERY_ITEMS.map((p, idx) => `
+                <button onclick="event.stopPropagation(); jumpToGallery(${idx})" 
+                    class="relative w-16 h-16 rounded-md overflow-hidden transition-all duration-300 border-2 flex-shrink-0 
+                    ${idx === currentModalIndex ? 'border-white scale-110 opacity-100' : 'border-transparent opacity-50 hover:opacity-100 hover:scale-105'}">
+                    <img src="${p.image}" class="w-full h-full object-cover">
+                </button>
+            `).join('');
+        }
+
+        function jumpToGallery(index) {
+            currentModalIndex = index;
+            updateGalleryModalContent();
+        }
+
+        function navigateGallery(direction, e) {
+            if(e) e.stopPropagation();
+            if (direction === 'next') {
+                currentModalIndex = (currentModalIndex + 1) % GALLERY_ITEMS.length;
+            } else {
+                currentModalIndex = (currentModalIndex - 1 + GALLERY_ITEMS.length) % GALLERY_ITEMS.length;
+            }
+            updateGalleryModalContent();
+        }
+
+        function handleGalleryKeydown(e) {
+            if (e.key === 'Escape') closeGalleryModal();
+            if (e.key === 'ArrowRight') navigateGallery('next');
+            if (e.key === 'ArrowLeft') navigateGallery('prev');
+        }
+
+    </script>
+</body>
+</html>
