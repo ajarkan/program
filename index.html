@@ -8,7 +8,7 @@
     <!-- META TAGS -->
     <meta property="og:title" content="Madrasah Ilmi - Belajar Islam Online & Offline">
     <meta property="og:description" content="Kelas Belajar Islam adalah kelas islami yang komprehensif, bersanad, dan fleksibel untuk semua kalangan. Daftar sekarang!">
-    <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AP1GczOUpbU-2hSkIEvPy63Kw04mnEgJFqfSeOLq50LsL_noG9fthuzCOR4xS2iswTPKUqL0SEeQD_P_6uexLDJlQnHCjSfaX4VXkrT12DX8plfFyNA7ykaINTQw0OIgyeVR9Ag4RY8oYwxbADd_58dN_VpQ=w512-h512-s-no-gm?authuser=0">
+    <meta property="og:image" content="https://lh3.googleusercontent.com/pw/AP1GczPA9jXgztdoCCCKqYeoymeBj8Iu6edy4bCVqWV1bG00BlmrfgPfKi0WcAiLwTfbwiFZT4wzN-Tf6Gwn4pRVsruyyez4zzmV1Cgxe4232rKbxcch1W0mtL_JjFwW38Vfg66YuUdKRz-xuC0XnhCzXBRP=w512-h512-s-no-gm?authuser=0">
     <meta property="og:type" content="website">
 
     <!-- FAVICON -->
@@ -74,30 +74,33 @@
         .no-scrollbar::-webkit-scrollbar { display: none; }
         .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
         
-		/* KHUSUS LOGO PARTNER: SEIMBANG (TIDAK KEKECILAN, TIDAK KEBESARAN) */
+        /* KHUSUS LOGO PARTNER */
         #landing-wrapper .partner-logo {
-            height: 42px !important; /* Mobile: 42px (Pas untuk 2-2.5 logo per layar) */
+            height: 42px !important;
             width: auto !important;
-            max-width: 160px !important; /* Batas lebar agar logo panjang aman */
+            max-width: 160px !important;
             object-fit: contain !important;
-		
+        }
+        
         /* Gallery / Carousel Hide Scrollbar */
         .scrollbar-hide::-webkit-scrollbar { display: none; }
         .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
 
-        /* FAQ Transition */
+        /* FAQ Transition FIXED */
         .faq-content {
-            transition: max-height 0.3s ease-out, opacity 0.3s ease-out, padding 0.3s ease;
+            transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
             max-height: 0;
             opacity: 0;
             overflow: hidden;
         }
+        
+        /* Note: We handle height via JS now for smoothness, removed fixed max-height in CSS */
         .faq-item.active .faq-content {
-            max-height: 500px;
             opacity: 1;
         }
-        .faq-icon { transition: transform 0.3s ease; }
-        .faq-item.active .faq-icon { transform: rotate(45deg); }
+        
+        .faq-icon i { transition: transform 0.3s ease; }
+        .faq-item.active .faq-icon i { transform: rotate(45deg); }
     </style>
 </head>
 <body class="text-gray-700 bg-gray-50 font-sans antialiased">
@@ -117,7 +120,7 @@
                     <a href="#classes" onclick="showLandingPage()" class="text-gray-600 hover:text-emerald-600 font-medium transition">Program Kelas</a>
                     <a href="#gallery" onclick="showLandingPage()" class="text-gray-600 hover:text-emerald-600 font-medium transition">Galeri</a>
                     <a href="#testimonials" onclick="showLandingPage()" class="text-gray-600 hover:text-emerald-600 font-medium transition">Testimoni</a>
-                    <!-- Tombol Cek Jadwal (Link Biasa) -->
+                    <!-- Tombol Cek Jadwal -->
                     <a href="https://ajarkan.github.io/jadwal/" target="_blank" rel="noopener noreferrer" class="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2.5 rounded-full font-medium transition shadow-lg shadow-emerald-600/20 transform hover:-translate-y-0.5">
                         Cek Jadwal
                     </a>
@@ -138,7 +141,7 @@
                 <a href="#classes" onclick="toggleMobileMenu(); showLandingPage()" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-md">Program Kelas</a>
                 <a href="#gallery" onclick="toggleMobileMenu(); showLandingPage()" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-md">Galeri</a>
                 <a href="#testimonials" onclick="toggleMobileMenu(); showLandingPage()" class="block px-3 py-3 text-base font-medium text-gray-700 hover:text-emerald-600 hover:bg-emerald-50 rounded-md">Testimoni</a>
-                <!-- Tombol Cek Jadwal Mobile (Link Biasa) -->
+                <!-- Tombol Cek Jadwal Mobile -->
                 <a href="https://ajarkan.github.io/jadwal/" target="_blank" rel="noopener noreferrer" onclick="toggleMobileMenu()" class="block w-full text-center mt-4 bg-emerald-600 text-white px-4 py-3 rounded-lg font-bold">Cek Jadwal</a>
             </div>
         </div>
@@ -240,7 +243,6 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8" id="class-grid">
-                    <!-- Cards are populated via JS or Static HTML below -->
                     <!-- Card 1 -->
                     <div class="bg-white rounded-2xl shadow-lg hover:shadow-xl transition overflow-hidden group border border-gray-100 flex flex-col h-full">
                         <div class="h-48 overflow-hidden relative">
@@ -307,7 +309,7 @@
                             <h3 class="text-xl font-bold text-emerald-900 mb-2">Kelas Tafsir Al-Quran</h3>
                             <p class="text-gray-500 text-sm mb-4 line-clamp-3">Menadaburi makna ayat suci Al-Quran dan asbabun nuzulnya untuk kehidupan sehari-hari.</p>
                             <div class="mt-auto pt-4 border-t border-gray-50">
-                                <button onclick="alert('Mohon maaf, kelas tafsir belum dibuka. Nantikan info selanjutnya!')" class="w-full py-2.5 rounded-lg border border-gray-400 text-gray-400 font-medium cursor-not-allowed">Kelas Belum Dibuka</button>
+                                <button onclick="openClassDetail('tafsir')" class="w-full py-2.5 rounded-lg border border-emerald-600 text-emerald-600 font-medium hover:bg-emerald-50 transition">Detail Kelas</button>
                             </div>
                         </div>
                     </div>
@@ -322,7 +324,7 @@
                             <p class="text-gray-500 text-sm mb-4 line-clamp-3">Belajar desain canva dari dasar sampai bisa.</p>
                             <div class="mt-auto pt-4 border-t border-gray-50">
                                 <button onclick="alert('Mohon maaf, kelas desain belum dibuka. Nantikan info selanjutnya!')" class="w-full py-2.5 rounded-lg border border-gray-400 text-gray-400 font-medium cursor-not-allowed">Kelas Belum Dibuka</button>
-                               </div>    
+                               </div>     
                             </div>
                         </div>
                     </div>
@@ -436,24 +438,24 @@
                             </div>
                         </div>
                     </div>
-					<!-- FAQ 2 -->
-					<div class="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md faq-item">
+                    <!-- FAQ 2 -->
+                    <div class="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md faq-item">
                         <div class="flex justify-between items-center p-5 cursor-pointer bg-white hover:bg-gray-50 transition" onclick="toggleFaq(this)">
-                            <h3 class="font-bold text-emerald-900 text-lg pr-4">Apa saja Program Kampoeng Quran?</h3>
+                            <h3 class="font-bold text-emerald-900 text-lg pr-4">Apakah bisa belajar secara online?</h3>
                             <div class="faq-icon text-emerald-500 text-xl font-bold bg-emerald-50 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                                 <i class="fas fa-plus transition-transform duration-300"></i>
                             </div>
                         </div>
                         <div class="faq-content bg-gray-50/50">
                             <div class="p-5 text-gray-600 leading-relaxed border-t border-gray-100">
-                                Program utama Kampoeng Quran Cendekia adalah Pesantren dengan legalitas SMP dan SMA, namun bagi yang hanya berminat mengaji ada program Takhassus.
+                                Ya, kami menyediakan kelas online menggunakan Zoom Meeting untuk memudahkan peserta yang berada di luar kota atau memiliki kesibukan padat.
                             </div>
                         </div>
-                    </div>			
-                     <!-- FAQ 3 -->
-                     <div class="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md faq-item">
+                    </div>          
+                      <!-- FAQ 3 -->
+                      <div class="bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-md faq-item">
                         <div class="flex justify-between items-center p-5 cursor-pointer bg-white hover:bg-gray-50 transition" onclick="toggleFaq(this)">
-                            <h3 class="font-bold text-emerald-900 text-lg pr-4">Apa Mazhabnya yang diterapkan di pesantren?</h3>
+                            <h3 class="font-bold text-emerald-900 text-lg pr-4">Apa Mazhab yang diterapkan?</h3>
                             <div class="faq-icon text-emerald-500 text-xl font-bold bg-emerald-50 w-8 h-8 rounded-full flex items-center justify-center shrink-0">
                                 <i class="fas fa-plus transition-transform duration-300"></i>
                             </div>
@@ -651,13 +653,13 @@
                     <label class="block text-sm font-medium text-gray-700 mb-2">Jenis Kelamin</label>
                     <div class="grid grid-cols-2 gap-4">
                         <label class="cursor-pointer">
-                            <input type="radio" name="gender" value="Laki-laki" class="peer sr-only" required>
+                            <input type="radio" name="gender" value="Laki-laki" class="peer sr-only" required onchange="renderSchedules()">
                             <div class="px-4 py-2 border text-center rounded-lg text-sm hover:bg-gray-50 peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition flex items-center justify-center gap-2">
                                 <i class="fas fa-mars"></i> Laki-laki
                             </div>
                         </label>
                         <label class="cursor-pointer">
-                            <input type="radio" name="gender" value="Perempuan" class="peer sr-only">
+                            <input type="radio" name="gender" value="Perempuan" class="peer sr-only" onchange="renderSchedules()">
                             <div class="px-4 py-2 border text-center rounded-lg text-sm hover:bg-gray-50 peer-checked:bg-emerald-600 peer-checked:text-white peer-checked:border-emerald-600 transition flex items-center justify-center gap-2">
                                 <i class="fas fa-venus"></i> Perempuan
                             </div>
@@ -680,8 +682,8 @@
                 <!-- Pilihan Kelas -->
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">Pilihan Kelas</label>
-                    <select id="kelas-select" name="category" onchange="updateScheduleOptions(this.value)" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 font-medium text-emerald-800 focus:ring-2 focus:ring-emerald-500 outline-none">
-                        <option value="Tahsin">Kelas Baca Al-Quran</option>
+                    <select id="kelas-select" name="category" onchange="renderSchedules()" class="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 font-medium text-emerald-800 focus:ring-2 focus:ring-emerald-500 outline-none">
+                        <option value="Baca Al-Quran">Kelas Baca Al-Quran (Qara'na)</option>
                         <option value="Bahasa Arab">Kelas Bahasa Arab</option>
                         <option value="Fiqih">Kelas Fiqih Ibadah</option>
                         <option value="Tajwid">Kelas Tajwid Intensif</option>
@@ -693,7 +695,7 @@
                 <div id="schedule-container" class="animate-fade-in">
                     <label class="block text-sm font-medium text-gray-700 mb-2">Pilih Jadwal</label>
                     <div id="schedule-options" class="space-y-3">
-                        <p class="text-sm text-gray-500 italic p-3 bg-gray-50 rounded-lg border border-gray-200">Silahkan pilih kelas terlebih dahulu.</p>
+                        <p class="text-sm text-gray-500 italic p-3 bg-gray-50 rounded-lg border border-gray-200">Silahkan pilih jenis kelamin terlebih dahulu.</p>
                     </div>
                 </div>
                 <!-- Kemampuan Baca Quran -->
@@ -751,7 +753,7 @@
         const VIDEO_PROFIL_URL = "https://www.youtube.com/embed/bFFzd89-uKk"; 
         const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz3Urh7RszE6LGDEFKJm7gS3kShJw_Ir6xruJNUos9uUlUPphHz2qnME4dxOcPfvmjw/exec'; 
 
-        // DATA KELAS
+        // DATA KELAS DENGAN JADWAL TERPISAH PER GENDER
         const classData = {
             quran: {
                 title: "Kelas Baca Al-Quran (Tahsin Dasar)",
@@ -759,12 +761,18 @@
                 desc: "Program ini didesain khusus untuk pemula yang ingin belajar membaca Al-Quran dari nol.<br><br><b>Target Pembelajaran:</b><br>Peserta diharapkan mampu memperbaiki bacaan yang masih <i>terbata-bata</i> dan memahami <u>kaidah dasar tajwid</u> dengan baik.",
                 syllabus: ["Pengenalan Huruf Hijaiyah", "Makharijul Huruf", "Sifat-sifat Huruf", "Latihan Membaca Kata Sambung", "Evaluasi Bacaan Al-Fatihah"],
                 price: "Rp 150.000 / bulan",
-                selectValue: "Tahsin",
+                selectValue: "Baca Al-Quran",
                 brosurLink: "https://ajarkan.github.io/tahsin/",
-                schedules: [
-                    { type: 'Online', times: ['Senin & Rabu | 19.30 – 21.00', 'Selasa & Kamis | 05.30 – 07.00', 'Sabtu & Ahad | 08.00 – 09.30'] },
-                    { type: 'Offline', times: ['Sabtu & Ahad | 09.00 – 11.00 (Jakarta)', 'Sabtu & Ahad | 16.00 – 17.30 (Jakarta)'] }
-                ]
+                schedules: {
+                    'Laki-laki': [
+                        { type: 'Online', times: ['Senin & Rabu | 19.30 – 21.00', 'Sabtu & Ahad | 08.00 – 09.30'] },
+                        { type: 'Offline', times: ['Sabtu & Ahad | 09.00 – 11.00'] }
+                    ],
+                    'Perempuan': [
+                        { type: 'Online', times: ['Selasa & Kamis | 05.30 – 07.00', 'Sabtu & Ahad | 16.00 – 17.30'] },
+                        { type: 'Offline', times: ['Sabtu & Ahad | 16.00 – 17.30'] }
+                    ]
+                }
             },
             arab: {
                 title: "Kelas Bahasa Arab (Nahwu Shorof)",
@@ -774,10 +782,16 @@
                 price: "Rp 200.000 / bulan",
                 selectValue: "Bahasa Arab",
                 brosurLink: "https://kampoengquran.or.id/",
-                schedules: [
-                    { type: 'Online', times: ['Senin & Rabu | 19.00 – 20.30'] },
-                    { type: 'Offline', times: ['Sabtu | 09.30 – 11.00'] }
-                ]
+                schedules: {
+                    'Laki-laki': [
+                        { type: 'Online', times: ['Senin & Rabu | 19.00 – 20.30'] },
+                        { type: 'Offline', times: ['Sabtu | 09.30 – 11.00'] }
+                    ],
+                    'Perempuan': [
+                        { type: 'Online', times: ['Senin & Rabu | 19.00 – 20.30'] },
+                        { type: 'Offline', times: ['Sabtu | 09.30 – 11.00'] }
+                    ]
+                }
             },
             fiqih: {
                 title: "Kelas Fiqih Ibadah",
@@ -787,10 +801,16 @@
                 price: "Rp 150.000 / bulan",
                 selectValue: "Fiqih",
                 brosurLink: "https://landingpage.com/quran",
-                schedules: [
-                    { type: 'Online', times: ['Jumat | 20.00 – 21.30'] },
-                    { type: 'Offline', times: ['Tidak tersedia untuk saat ini'] }
-                ]
+                schedules: {
+                    'Laki-laki': [
+                         { type: 'Online', times: ['Jumat | 20.00 – 21.30'] },
+                         { type: 'Offline', times: [] } // Contoh KOSONG: Belum Dibuka
+                    ],
+                    'Perempuan': [
+                         { type: 'Online', times: ['Jumat | 20.00 – 21.30'] },
+                         { type: 'Offline', times: [] } // Contoh KOSONG: Belum Dibuka
+                    ]
+                }
             },
              tajwid: {
                 title: "Kelas Tajwid Intensif",
@@ -800,10 +820,16 @@
                 price: "Rp 175.000 / bulan",
                 selectValue: "Tajwid",
                 brosurLink: "https://landingpage.com/quran",
-                schedules: [
-                    { type: 'Online', times: ['Selasa & Kamis | 19.30 – 21.00'] },
-                    { type: 'Offline', times: ['Ahad | 09.00 – 11.00'] }
-                ]
+                schedules: {
+                    'Laki-laki': [
+                        { type: 'Online', times: ['Selasa & Kamis | 19.30 – 21.00'] },
+                        { type: 'Offline', times: ['Ahad | 09.00 – 11.00'] }
+                    ],
+                    'Perempuan': [
+                        { type: 'Online', times: ['Selasa & Kamis | 19.30 – 21.00'] },
+                        { type: 'Offline', times: ['Ahad | 09.00 – 11.00'] }
+                    ]
+                }
             },
             tafsir: {
                 title: "Kelas Tafsir Al-Quran",
@@ -813,10 +839,16 @@
                 price: "Gratis / Infaq Seikhlasnya",
                 selectValue: "Tafsir",
                 brosurLink: "https://landingpage.com/quran",
-                schedules: [
-                 	{ type: 'Online', times: ['Ahad | 08.00 – 09.30', 'Ahad | 09.30 – 11.00', 'Ahad | 13.00 – 14.30'] },
-                    { type: 'Offline', times: ['Ahad | 08.00 – 09.30'] }
-                ]
+                 schedules: {
+                    'Laki-laki': [
+                        { type: 'Online', times: ['Ahad | 08.00 – 09.30', 'Ahad | 09.30 – 11.00'] },
+                        { type: 'Offline', times: [] } // Contoh KOSONG: Belum Dibuka
+                    ],
+                    'Perempuan': [
+                         { type: 'Online', times: ['Ahad | 13.00 – 14.30'] },
+                         { type: 'Offline', times: ['Ahad | 08.00 – 09.30'] }
+                    ]
+                }
             },
             desain: {
                 title: "Kelas Desain",
@@ -826,10 +858,16 @@
                 price: "Rp 175.000 / bulan",
                 selectValue: "Desain",
                 brosurLink: "https://landingpage.com/quran",
-                schedules: [
-                    { type: 'Online', times: ['Selasa & Kamis | 19.30 – 21.00'] },
-                    { type: 'Offline', times: ['Ahad | 09.00 – 11.00'] }
-                ]
+                schedules: {
+                    'Laki-laki': [
+                        { type: 'Online', times: ['Selasa & Kamis | 19.30 – 21.00'] },
+                        { type: 'Offline', times: ['Ahad | 09.00 – 11.00'] }
+                    ],
+                    'Perempuan': [
+                        { type: 'Online', times: ['Selasa & Kamis | 19.30 – 21.00'] },
+                        { type: 'Offline', times: [] } // Contoh KOSONG: Belum Dibuka
+                    ]
+                }
             }
         };
 
@@ -885,12 +923,12 @@
                             <div class="flex items-center text-gray-700"><i class="fas fa-tag w-8 text-emerald-600"></i> <span class="font-semibold">Infaq:</span>&nbsp; ${data.price}</div>
                             <div class="flex items-center text-gray-700 text-sm italic mt-2"><i class="fas fa-info-circle w-8 text-emerald-600"></i> Jadwal lengkap tersedia saat klik tombol daftar.</div>
                         </div>
-                        <div class="flex flex-row gap-3">
-    <button onclick="openRegisterModal('${data.selectValue}')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold py-3 px-2 rounded-full shadow-lg transition transform hover:-translate-y-1 text-center text-sm md:text-lg">
+                        <div class="flex flex-col sm:flex-row gap-4">
+    <button onclick="openRegisterModal('${data.selectValue}')" class="flex-1 bg-emerald-600 hover:bg-emerald-700 text-white text-lg font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:-translate-y-1 text-center">
         Daftar
     </button>
 
-    <a href="${data.brosurLink}" target="_blank" class="flex-1 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 text-lg font-bold py-3 px-2 rounded-full shadow-lg transition transform hover:-translate-y-1 text-center flex items-center justify-center text-sm md:text-lg">
+    <a href="${data.brosurLink}" target="_blank" class="flex-1 border-2 border-emerald-600 text-emerald-600 hover:bg-emerald-50 text-lg font-bold py-3 px-6 rounded-full shadow-lg transition transform hover:-translate-y-1 text-center flex items-center justify-center">
         Brosur
     </a>
 </div>
@@ -918,7 +956,9 @@
             
             modal.classList.remove('hidden');
             if(className && className !== 'Umum') select.value = className;
-            updateScheduleOptions(select.value);
+            
+            // Trigger render untuk cek state awal (biasanya gender kosong)
+            renderSchedules();
 
             setTimeout(() => {
                 panel.classList.remove('scale-95', 'opacity-0');
@@ -934,19 +974,50 @@
             setTimeout(() => { modal.classList.add('hidden'); }, 300);
         }
 
-        function updateScheduleOptions(selectedClassName) {
+        // --- NEW FUNCTION: RENDER SCHEDULES BY GENDER ---
+        function renderSchedules() {
+            const classSelect = document.getElementById('kelas-select');
+            const genderSelect = document.querySelector('input[name="gender"]:checked');
             const container = document.getElementById('schedule-options');
+
+            // 1. Reset Container
             container.innerHTML = ''; 
+
+            // 2. Jika gender belum dipilih, tampilkan pesan
+            if (!genderSelect) {
+                container.innerHTML = `
+                    <div class="p-4 bg-yellow-50 border border-yellow-200 rounded-lg flex items-center text-yellow-800 text-sm">
+                        <i class="fas fa-exclamation-circle mr-2 text-lg"></i>
+                        Silahkan pilih jenis kelamin terlebih dahulu untuk melihat jadwal.
+                    </div>`;
+                return;
+            }
+
+            const className = classSelect.value;
+            const gender = genderSelect.value; // 'Laki-laki' atau 'Perempuan'
+
+            // 3. Cari Data Kelas
             let selectedKey = null;
             for(const [key, data] of Object.entries(classData)) {
-                if(data.selectValue === selectedClassName) { selectedKey = key; break; }
+                if(data.selectValue === className) { selectedKey = key; break; }
             }
-            if(selectedKey && classData[selectedKey].schedules) {
-                classData[selectedKey].schedules.forEach((group) => {
+
+            // 4. Ambil Jadwal Spesifik Gender
+            const data = classData[selectedKey];
+            const scheduleList = data?.schedules?.[gender];
+
+            if(scheduleList && scheduleList.length > 0) {
+                scheduleList.forEach((group) => {
                     const accordionItem = document.createElement('div');
                     accordionItem.className = "border border-gray-200 rounded-lg mb-2 overflow-hidden bg-white shadow-sm transition-all duration-300";
                     const iconClass = group.type === 'Online' ? 'fa-laptop' : 'fa-users';
-                    
+                    const isAvailable = group.times && group.times.length > 0;
+
+                    // Header subtitle logic
+                    const subtitle = isAvailable 
+                        ? `<span class="text-xs text-gray-400 font-normal">${group.times.length} Opsi Jadwal</span>`
+                        : `<span class="text-xs text-red-500 font-bold">Belum Dibuka</span>`;
+
                     const header = document.createElement('button');
                     header.type = "button"; 
                     header.className = "w-full flex justify-between items-center p-3 bg-gray-50 hover:bg-emerald-50 transition text-left focus:outline-none group";
@@ -957,24 +1028,36 @@
                             </div>
                             <div>
                                 <span class="font-bold text-gray-800 text-sm block">${group.type}</span>
-                                <span class="text-xs text-gray-400 font-normal">${group.times.length} Opsi Jadwal</span>
+                                ${subtitle}
                             </div>
                         </div>
                         <i class="fas fa-chevron-down text-gray-400 accordion-arrow"></i>
                     `;
+                    
                     const content = document.createElement('div');
                     content.className = "hidden p-3 bg-white border-t border-gray-100 space-y-2";
-                    group.times.forEach(time => {
-                         const label = document.createElement('label');
-                        label.className = "flex items-start p-2 rounded hover:bg-emerald-50 cursor-pointer border border-transparent hover:border-emerald-100 transition";
-                        const disabled = time.toLowerCase().includes('tidak tersedia');
-                        const formattedValue = time.includes('|') ? time.replace('|', `| ${group.type} |`) : `${group.type} - ${time}`;
-                        label.innerHTML = `
-                            <input type="radio" name="schedule" value="${formattedValue}" class="mt-1 mr-2 text-emerald-600 focus:ring-emerald-500" required ${disabled ? 'disabled' : ''}>
-                            <span class="text-sm text-gray-700 ${disabled ? 'text-gray-400 italic' : ''}">${time}</span>
+                    
+                    if (isAvailable) {
+                        group.times.forEach(time => {
+                            const label = document.createElement('label');
+                            label.className = "flex items-start p-2 rounded hover:bg-emerald-50 cursor-pointer border border-transparent hover:border-emerald-100 transition";
+                            const formattedValue = time.includes('|') ? time.replace('|', `| ${group.type} |`) : `${group.type} - ${time}`;
+                            label.innerHTML = `
+                                <input type="radio" name="schedule" value="${formattedValue}" class="mt-1 mr-2 text-emerald-600 focus:ring-emerald-500" required>
+                                <span class="text-sm text-gray-700">${time}</span>
+                            `;
+                            content.appendChild(label);
+                        });
+                    } else {
+                        // Render Error Message Box
+                        content.innerHTML = `
+                            <div class="flex items-center p-4 bg-red-50 border border-red-100 rounded-lg text-red-600 text-sm">
+                                <i class="fas fa-ban mr-3 text-lg"></i>
+                                <span>Mohon maaf, kelas belum dibuka untuk ${group.type.toLowerCase()}!</span>
+                            </div>
                         `;
-                        content.appendChild(label);
-                    });
+                    }
+
                     header.onclick = () => {
                         const isHidden = content.classList.contains('hidden');
                         if(isHidden) {
@@ -992,7 +1075,7 @@
                     container.appendChild(accordionItem);
                 });
             } else {
-                 container.innerHTML = '<p class="text-sm text-gray-500 italic p-3 bg-gray-50 rounded-lg border border-gray-200">Jadwal belum tersedia.</p>';
+                 container.innerHTML = '<p class="text-sm text-gray-500 italic p-3 bg-gray-50 rounded-lg border border-gray-200">Jadwal belum tersedia untuk pilihan ini.</p>';
             }
         }
 
@@ -1041,33 +1124,43 @@
             document.getElementById('wa-input').value = '';
         }
 
+        // --- FIXED FAQ LOGIC ---
         function toggleFaq(header) {
             const item = header.parentElement;
             const content = item.querySelector('.faq-content');
             const icon = item.querySelector('.faq-icon i');
             const iconBox = item.querySelector('.faq-icon');
+            
+            // Check if current item is open
+            const isOpen = item.classList.contains('active');
 
+            // 1. Close ALL items first
             document.querySelectorAll('.faq-item').forEach(other => {
-                if(other !== item && other.classList.contains('active')) {
-                    other.classList.remove('active');
-                    other.querySelector('.faq-content').style.maxHeight = 0;
-                    other.querySelector('.faq-icon i').classList.remove('rotate-45');
-                    other.querySelector('.faq-icon').classList.replace('bg-emerald-500','bg-emerald-50');
-                    other.querySelector('.faq-icon').classList.replace('text-white','text-emerald-500');
-                }
+                other.classList.remove('active');
+                
+                // Reset styles
+                const otherContent = other.querySelector('.faq-content');
+                otherContent.style.maxHeight = 0;
+                
+                // Reset icons
+                const otherIcon = other.querySelector('.faq-icon i');
+                const otherIconBox = other.querySelector('.faq-icon');
+                otherIcon.classList.remove('rotate-45');
+                otherIconBox.classList.replace('bg-emerald-500','bg-emerald-50');
+                otherIconBox.classList.replace('text-white','text-emerald-500');
             });
 
-            item.classList.toggle('active');
-            if(item.classList.contains('active')) {
+            // 2. If it wasn't open, open it now
+            if(!isOpen) {
+                item.classList.add('active');
+                
+                // Set precise height for smooth animation
                 content.style.maxHeight = content.scrollHeight + "px";
+                
+                // Set active icons
                 icon.classList.add('rotate-45');
                 iconBox.classList.replace('bg-emerald-50','bg-emerald-500');
                 iconBox.classList.replace('text-emerald-500','text-white');
-            } else {
-                content.style.maxHeight = 0;
-                icon.classList.remove('rotate-45');
-                iconBox.classList.replace('bg-emerald-500','bg-emerald-50');
-                iconBox.classList.replace('text-white','text-emerald-500');
             }
         }
 
